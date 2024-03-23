@@ -12,7 +12,7 @@ const Home = () => {
 
     return (
         <div>
-            <div style={{ background: "#fff8f8" }} className='bg1'>
+            <div style={{ background: "#fff8f8"  }} className='bg1'>
                 <div class="container">
                     <div class="row">
 
@@ -39,7 +39,7 @@ const Home = () => {
                 </div>
 
             </div>
-            <div className='section2'>
+            <div className='section2' >
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-1"></div>
@@ -100,7 +100,7 @@ const Home = () => {
 
             </div>
 
-            <div className='section3'>
+            <div className='section3' >
 
 
                 <Container>
@@ -144,7 +144,7 @@ const Home = () => {
                     </Row>
                 </Container>
             </div>
-            <div style={{ background: "#fff8f8" }} className='bg2'>
+            <div style={{ background: "#fff8f8"}} className='bg2'>
                 <Container>
 
                     <div className='center4'>
@@ -283,7 +283,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div style={{ background: "#1d3748" }} className='goldmedal'>
+            <div style={{ background: "#1d3748"}} className='goldmedal'>
                 <Container>
                     <Cardsliders />
                 </Container>

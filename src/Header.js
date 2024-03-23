@@ -53,7 +53,7 @@ const Header = () => {
 
 
 
-            <Navbar bg="white" expand="md" className='fixed-top navu9 desktop22' style={{ height: "80px", color: "black" }}>
+            <Navbar bg="white" expand="md" className='fixed-top navu9 desktop22' style={{ height: "90px", color: "black" }}>
                 <Container>
                     <NavLink to="/" className="text-decoration-none  mx-3" style={{ fontSize: "34px", fontFamily: "Italic" }}>
                         <img src='./img/tutor.png' className='tutorimg1' />

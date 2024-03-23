@@ -109,7 +109,7 @@ a{
 
 @media (max-width: 480px) {
     .fixed-top {
-        position: relative;
+        position: fixed;
         top: 0;
         right: 0;
         left: 0;
@@ -140,8 +140,8 @@ a{
         z-index: 10;
         /* background-color: #ffffff; */
         /* color: #ffffff; */
-        margin: -20px 0px 0px 0px !important;
-        padding: 20px 10px 30px 10px !important;
+        margin: 10px 0px 0px 0px !important;
+        padding: 0px 10px 30px 10px !important;
     }
     
     .desktop11{
@@ -149,8 +149,13 @@ a{
       }
       .desktop22{
         display: block !important;
-        margin: 10px !important;
+    
       }
+      .tutorimg1 {
+        width: 90px;
+       height: 70px;
+       margin: 0px 0px 0px 0px !important;
+    }
   }
 
 
@@ -162,7 +167,7 @@ a{
       }
       .desktop22{
         display: none;
-        margin: 10px !important;
+        
       }
 
 }
