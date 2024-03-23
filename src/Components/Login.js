@@ -25,7 +25,7 @@ const Login = () => {
 
                             </div>
                             <div class="col">
-                                <div class="service-card">
+                                <div class="service-card2">
                                     <Card className='card576'>
                                         <h1 className='Signup2'>Let’s get started!</h1>
                                         <Form className='form9180' >
@@ -93,7 +93,7 @@ const Login = () => {
 
                 </Container>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     )
 }

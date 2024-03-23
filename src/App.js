@@ -7,7 +7,7 @@ import About from './Components/About';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Dashboard from './Dashboard';
-import DahsboradHome from './Component/DahsboradHome';
+import DashboardHome from './Component/DashboardHome';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/Dashboard' element={<Dashboard/>} />
-        <Route path='/DahsboradHome' element={<DahsboradHome/>} />
+        <Route path='/DashboardHome' element={<DashboardHome/>} />
       </Routes>
     
       

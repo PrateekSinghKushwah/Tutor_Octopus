@@ -1,0 +1,139 @@
+.subscrip2{
+    font-size: 20px;
+    margin: 40px 0px 0px 170px;
+}
+
+:root {
+  --line-border-fill: rgba(17, 119, 254, 1);
+  --line-border-empty: #e0e0e0;
+}
+
+
+
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  margin-left: 90px;
+  padding: 20px 0px 20px 0px;
+  width: 85%;
+  position: relative;
+  margin-top: 30px;
+
+
+  
+}
+.bnnbcon{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+   
+    margin-left:60px ;
+   
+    
+    
+}
+
+.progress-container::before {
+  content: "";
+  background-color: rgba(17, 119, 254, 1);
+  position: absolute;
+  top: 40%;
+  left: 0;
+  height: 2px;
+  width: 90%;
+  transform: translateY(-0%);
+  z-index: -1;
+}
+
+.progress {
+  background-color: rgba(17, 119, 254, 1);
+  position: absolute;
+  top: 5%;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  transform: translateY(-0%);
+  z-index: -1;
+  transition: .4s ease;
+}
+
+.circle {
+  background-color: white;
+  color: #999;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(17, 119, 254, 1);
+  transition: .4s ease;
+}
+
+.circle.active {
+  border-color: rgba(17, 119, 254, 1);
+}
+
+
+
+
+
+  .sec-icon {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    margin: 0 auto;
+  }
+  
+  .sec-icon::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    left: -70px;
+    margin-top: -5.5px;
+    top: 60%;
+    background: #333333;
+    width: 50px;
+  }
+  
+  .sec-icon::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    right: -70px;
+    margin-top: -5.5px;
+    top: 60%;
+    background: #333;
+    width: 50px;
+  }
+  
+  .service-card{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: rgba(29, 55, 72, 1);
+    padding: 20px 0px 10px 0px;
+    border-radius: 10px;
+    height: 220px;
+
+  }
+  .bkkcon{
+    padding: 30px 10px 0px 200px;
+  }
+  .imhhg{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 25%;
+    background-color: #ff9f0a;
+    border-radius: 50px;
+   
+  }
+  .calender5{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 10%;
+    background-color: #9923ba;
+    border-radius: 100%;
+    margin-top: 40px;
+    
+  }

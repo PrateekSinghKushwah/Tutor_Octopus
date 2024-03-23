@@ -3,6 +3,7 @@ import { Button, Card, Col, Container, Form, FormLabel, Row } from 'react-bootst
 import './Login.css'
 import Header from '../Header';
 import Footer from '../Footer';
+
 const Signup = () => {
     return (
         <div>
@@ -22,7 +23,7 @@ const Signup = () => {
 
                             </div>
                             <div class="col">
-                                <div class="service-card">
+                                <div class="service-card2">
                                     <Card className='card576'>
                                         <h1 className='Signup2'>Let’s get started!</h1>
                                         <Form className='form9180' >
@@ -114,7 +115,7 @@ const Signup = () => {
 
                 </Container>
             </div>
-            <Footer />
+           <Footer/>
         </div>
     )
 }
