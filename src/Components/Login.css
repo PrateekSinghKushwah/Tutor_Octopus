@@ -1,0 +1,132 @@
+.new-wrapper {
+    padding: 170px 0px 100px 0px;
+    background-color: #fff8f8;
+
+}
+
+.Signup1 {
+    font-size: 33px;
+    text-align: center;
+    font-weight: 700;
+
+}
+
+.Signup2 {
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0px 40px 0px;
+}
+
+.lets {
+    font-size: 18px;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+}
+
+.card576 {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: none;
+    padding: 50px 40px 30px 40px;
+
+
+}
+
+.bg76 {
+    padding: 60px 0px 50px 0px;
+    border-bottom: 1px solid rgb(147, 147, 147);
+    margin: 0px 0px -90px 0px;
+}
+
+.btn809 {
+    background-color: #FEB249;
+    border: none;
+    border-radius: 0px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 40px 10px 40px;
+
+}
+.form-select {
+  
+    color: #626262 !important;
+}
+.ForgetPassword2{
+    color: #F39C3B !important;
+    margin: 20px 0px 0px 0px;
+    font-size: 14px;
+}
+.ForgetPassword {
+    float: right;
+    color: #F39C3B !important;
+    text-decoration: none !important;
+    margin: 20px 0px 0px 0px;
+
+
+}
+
+.notres {
+    text-align: center;
+    font-size: 14px;
+    margin: 0px !important;
+    padding: 0px;
+    font-weight: 400;
+
+}
+
+.notres1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #F39C3B;
+    text-align: center;
+    margin: 0px;
+
+}
+
+.VOIR_LESPRODUITSbn9 {
+    background-color: #052A44;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 50px 8px 50px;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.VOIR_LESPRODUITSbn9:hover {
+    background-color: #FF9F0A;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 50px 8px 50px;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.VOIR_LESPRODUITSbn99 {
+    background-color: #052A44;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 50px 8px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.VOIR_LESPRODUITSbn99:hover {
+    background-color: #FF9F0A;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 50px 8px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

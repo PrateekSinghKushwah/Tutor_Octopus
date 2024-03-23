@@ -1,0 +1,58 @@
+.bg-body-tertiary {
+    background-color: #f5efef;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 20px 130px 20px 280px !important;
+
+}
+button#dropdown-basic {
+    background: transparent;
+    color: black;
+    border: none;
+}
+
+
+.subscrip {
+    font-weight: 700;
+}
+.dropdown-toggle::after {
+   
+    font-size: 0px !important;
+}
+.share1 {
+    font-size: 35px;
+    border-radius: 50px;
+    padding: 4px;
+    background-color: rgba(17, 119, 254, 1);
+    color: white;
+    margin: 0px 10px  0px 10px;
+}
+
+.share2 {
+    font-size: 40px;
+    border-radius: 50px;
+    padding: 4px ;
+    background-color: rgba(17, 120, 254, 0);
+    color: rgba(17, 119, 254, 1);
+    margin: 0px 10px  0px 10px;
+}
+.dropdown-menu.show {
+    display: block;
+    padding: 20px 0px 20px 0px;
+    margin-left: -50px;
+    border: 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.share3{
+    font-size: 40px;
+    
+    padding: 4px ;
+    background-color: rgba(17, 120, 254, 0);
+    color: rgba(17, 119, 254, 1);  
+}
+.content2{
+    padding: 70px 0px 20px 0px;
+}
+.p098{
+    font-size: 18px;
+}
+

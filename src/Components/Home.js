@@ -8,9 +8,14 @@ import { FaLock } from "react-icons/fa";
 import About from './About';
 import Cardsliders from './Cardsliders';
 import Contact from './Contact';
+import Header from '../Header';
+import Footer from '../Footer';
+
 const Home = () => {
 
     return (
+        <>
+        <Header />
         <div>
             <div style={{ background: "#fff8f8"  }} className='bg1'>
                 <div class="container">
@@ -370,7 +375,8 @@ const Home = () => {
 
             </div>
         </div>
-
+        <Footer />
+        </>
     )
 }
 

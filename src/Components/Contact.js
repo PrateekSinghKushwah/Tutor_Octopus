@@ -150,7 +150,7 @@ const Contact = () => {
 
     return (
         <div>
-            <div className="new-wrapper">
+            <div className="new-wrapperb">
 
 
 
@@ -161,8 +161,8 @@ const Contact = () => {
 
 
                         <Form.Group className="mb-4" controlId="formBasicEmail">
-                            <FormLabel>First Name</FormLabel>
-                            <Form.Control className="no-outline" type="text" maxLength={20}
+                            <FormLabel className="fomlable1">First Name</FormLabel>
+                            <Form.Control className="no-outline FormControl2" type="text" maxLength={20}
                                 name="name"
                                 onChange={handleChange}
                                 onBlur={validateOne} />
@@ -173,7 +173,7 @@ const Contact = () => {
 
 
                         <Form.Group className="mb-4" controlId="formBasicEmail">
-                            <FormLabel>Last Name</FormLabel>
+                            <FormLabel className="fomlable1">Last Name</FormLabel>
                             <Form.Control className="FormControl2" type="text"
                                 name="lastname"
                                 onChange={handleChange}
@@ -187,7 +187,7 @@ const Contact = () => {
 
 
                         <Form.Group className="mb-4" controlId="formBasicEmail">
-                            <FormLabel>Email Id</FormLabel>
+                            <FormLabel className="fomlable1">Email Id</FormLabel>
                             <Form.Control className="FormControl2" type="email" maxLength={20} name="email"
 
                                 onChange={handleChange}
@@ -195,7 +195,7 @@ const Contact = () => {
                             <div style={{ color: "red" }}>{emailVal}</div>
                         </Form.Group>
 
-                        <FormLabel>Write your Message</FormLabel>
+                        <FormLabel className="fomlable1">Write your Message</FormLabel>
 
                         <Form.Control className="FormControl2" as="textarea"
                             rows={3} style={{ height: "10px" }}

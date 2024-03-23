@@ -1,0 +1,118 @@
+/* :root {
+ 
+  --primary-linear-gradient: hsl(298, 97%, 46%), hsl(237, 63%, 64%);
+
+  --neutral-light-grayish-blue: hsl(234, 14%, 74%);
+ 
+ 
+} */
+
+.PricingApp {
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "Montserrat", sans-serif;
+  font-weight: var(--primary-fw);
+  font-size: var(--primary-fs);
+  display: grid;
+  place-items: center;
+
+  background-size: 375px 658px;
+
+}
+
+
+button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: var(--primary-fw);
+  font-size: var(--primary-fs);
+}
+
+/*toggle*/
+.PricingApp .price-switch {
+  --border-radius: 10em;
+  display: block;
+  width: 50px;
+  height: 25px;
+  border-radius: var(--border-radius);
+  position: relative;
+  cursor: pointer;
+}
+
+.PricingApp .price-checkbox {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.PricingApp .switch-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 25px;
+  border-radius: var(--border-radius);
+  background-image: linear-gradient(to right, var(--primary-linear-gradient));
+  background-color: rgba(106, 170, 254, 1);
+}
+
+.PricingApp .switch-slider:is(:hover, :focus-visible) {
+  opacity: 0.7;
+}
+
+.PricingApp .switch-slider::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 20px;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background-color: white;
+  transform: translateX(calc(100% + 2px));
+  transition: 0.3s ease;
+}
+
+.PricingApp .price-checkbox:checked+.switch-slider::before {
+  transform: translateX(0%);
+}
+
+/*------*/
+
+.PricingApp .app-container {
+  width: min(90%, 70rem);
+}
+
+.PricingApp header .header-topic {
+  text-align: center;
+  color: var(--neutral-dark-grayish-blue);
+}
+
+.PricingApp header>.header-row {
+  margin-top: 2em;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  margin-left: -70px;
+}
+
+.PricingApp .pricing-cards {
+  margin-top: 10px;
+  min-height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .PricingApp {
+    padding-block: 4em;
+  }
+
+  .PricingApp .pricing-cards {
+    flex-direction: column;
+    gap: 2em;
+  }
+}
