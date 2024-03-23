@@ -17,6 +17,14 @@ const Cardsliders = () => {
         slidesToShow: 3,
         slidesToScroll: 1
     };
+
+    let sliderRef1 = useRef(null);
+    const next1 = () => {
+        sliderRef1.slickNext();
+    };
+    const previous1 = () => {
+        sliderRef1.slickPrev();
+    };
     const settings2 = {
         dots: false,
         infinite: true,
@@ -122,10 +130,10 @@ const Cardsliders = () => {
                         <h1 className="our1">Our<br></br>Features</h1>
                         <p className="p9">Explore our popular  features</p>
                         <div className="center56">
-                            <button className="buttonb" onClick={previous}>
+                            <button className="buttonb" onClick={previous1}>
                             <BsArrowLeftCircle  className="left"/>
                             </button>
-                            <button className="buttonb" onClick={next}>
+                            <button className="buttonb" onClick={next1}>
                             <BsArrowRightCircle className="left"/>
                             </button>
                         </div>
@@ -136,8 +144,8 @@ const Cardsliders = () => {
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-8">
                         <Slider
-                            ref={slider => {
-                                sliderRef = slider;
+                            ref={slider1 => {
+                                sliderRef1 = slider1;
                             }}
                             {...settings2}
                         >

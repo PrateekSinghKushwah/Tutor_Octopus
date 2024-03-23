@@ -973,6 +973,10 @@ hr.bghhr {
         padding: 0 30px !important;
     }
     
+    .slick-prev {
+        left: -32px !important;
+    }
+    
     
     
     
