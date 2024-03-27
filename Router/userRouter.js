@@ -30,7 +30,9 @@ router.post('/login', async (req, res) => {
             data: {
                 user: user.email,
                 token: token,
-                name:user.firstName+" "+user.lastName
+                firstName:user.firstName,
+                lastName:user.lastName,
+                
             },
             message: "Login successfull",
             success: true,
