@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
             { expiresIn: '1h' }
         )
 
-        res.status(409).send({
+        res.status(200).send({
             data: {
                 user: user.email,
                 token: token,
@@ -39,7 +39,10 @@ router.post('/login', async (req, res) => {
 
         })
     } else {
-        res.status(400).send();
+        res.status(505).send({
+            success:false,
+            message:"The password is not valid"
+        });
     }
 
 
@@ -101,7 +104,7 @@ router.post('/register', async (req, res) => {
     // if (!user)
     //     return res.status(400).send('the user cannot be created!')
 
-    res.status(409).send({
+    res.status(200).send({
         success: true,
         message: "User added successfully",
         data: {
