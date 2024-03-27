@@ -30,9 +30,11 @@ router.post('/login', async (req, res) => {
             data: {
                 user: user.email,
                 token: token,
+                name:user.firstName+" "+user.lastName
             },
             message: "Login successfull",
-            success: true
+            success: true,
+            
         })
     } else {
         res.status(400).send();
@@ -58,6 +60,7 @@ router.post('/register', async (req, res) => {
     }
     //looping over the data so as to validate it.
     //
+    console.log(data);
     for (const [key, value] of Object.entries(data)) {
         console.log(key);
         if (value.length === 0) {
