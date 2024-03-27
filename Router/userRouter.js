@@ -13,7 +13,7 @@ router.post('/login', async (req, res) => {
     if (!user) {
         return res.status(400).send({
             success: false,
-            message: 'The user not found'
+            message: 'The email is not valid'
         });
     }
 
@@ -23,20 +23,20 @@ router.post('/login', async (req, res) => {
                 userId: user.id
             },
             secret,
-            { expiresIn: '1d' }
+            { expiresIn: '1h' }
         )
 
-        res.status(200).send({
+        res.status(409).send({
             data: {
                 user: user.email,
                 token: token,
-                firstName:user.firstName,
-                lastName:user.lastName,
-                
+                firstName: user.firstName,
+                lastName: user.lastName,
+
             },
             message: "Login successfull",
             success: true,
-            
+
         })
     } else {
         res.status(400).send();
@@ -101,7 +101,7 @@ router.post('/register', async (req, res) => {
     // if (!user)
     //     return res.status(400).send('the user cannot be created!')
 
-    res.status(200).send({
+    res.status(409).send({
         success: true,
         message: "User added successfully",
         data: {
