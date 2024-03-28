@@ -33,6 +33,7 @@ router.post('/login', async (req, res) => {
                 token: token,
                 firstName: user.firstName,
                 lastName: user.lastName,
+                role:user.businessType
 
             },
             message: "Login successfull",

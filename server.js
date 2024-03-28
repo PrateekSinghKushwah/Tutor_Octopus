@@ -4,6 +4,7 @@ const app=express();
 const mongoose=require('mongoose');
 const cors=require('cors');
 const userRouter=require('./Router/userRouter')
+const studentRouter=require('./Router/studentRouter')
 
 
 
@@ -24,6 +25,7 @@ mongoose.connect(Connection_String).then(()=>{
 
 //Routers
 app.use(userRouter);
+app.use(studentRouter);
 
 
 //Connecting to server
