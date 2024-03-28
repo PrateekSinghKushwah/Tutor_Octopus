@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
 
         })
     } else {
-        res.status(505).send({
+        res.status(200).send({
             data:{
                 
                     success:false,
