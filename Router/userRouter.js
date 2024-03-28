@@ -13,7 +13,7 @@ router.post('/login', async (req, res) => {
         const secret = process.env.secret;
 
         if (!user) {
-            return res.status(401).send({
+            return res.status(200).send({
                 success: false,
                 message: 'Invalid email or password'
             });
@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
         const passwordMatch = bcrypt.compareSync(req.body.password, user.passwordHash);
 
         if (!passwordMatch) {
-            return res.status(401).send({
+            return res.status(200).send({
                 success: false,
                 message: 'Invalid email or password'
             });
