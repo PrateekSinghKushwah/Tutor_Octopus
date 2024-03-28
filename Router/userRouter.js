@@ -8,50 +8,60 @@ const saltRounds = 10;
 
 // {firstName: 'PANKAJ', lastName: 'SONI', email: 'pankajsoni93444@gmai', password: '1234', businessName: 'Lets_learn', …}
 router.post('/login', async (req, res) => {
-    const user = await Educator_info.findOne({ email: req.body.email })
-    const secret = process.env.secret;
-    if (!user) {
-        return res.status(200).send({
-                success: false,
-                message: 'The email is not valid'
-            
-        });
-    }
+    try {
+        const user = await Educator_info.findOne({ email: req.body.email });
+        const secret = process.env.secret;
 
-    if (user && bcrypt.compareSync(req.body.password, user.passwordHash)) {
+        if (!user) {
+            return res.status(401).send({
+                success: false,
+                message: 'Invalid email or password'
+            });
+        }
+
+        // Log the password comparison for debugging (do not log passwords in production)
+        console.log("Password Hash from DB:", user.passwordHash);
+        console.log("Password Comparison:", bcrypt.compareSync(req.body.password, user.passwordHash));
+        console.log("Input Password Hash:", bcrypt.hashSync(req.body.password, 10));
+
+        // Securely compare passwords
+        const passwordMatch = bcrypt.compareSync(req.body.password, user.passwordHash);
+
+        if (!passwordMatch) {
+            return res.status(401).send({
+                success: false,
+                message: 'Invalid email or password'
+            });
+        }
+
         const token = jwt.sign(
             {
                 userId: user.id
             },
             secret,
             { expiresIn: '1h' }
-        )
+        );
 
         res.status(200).send({
+            success: true,
+            message: "Login successful",
             data: {
                 user: user.email,
                 token: token,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                role:user.businessType
-
-            },
-            message: "Login successfull",
-            success: true,
-
-        })
-    } else {
-        res.status(200).send({
-                
-                    success:false,
-                    message:"The password is not valid"
-                
-            
+                role: user.businessType
+            }
+        });
+    } catch (error) {
+        console.error("Error during login:", error);
+        res.status(500).send({
+            success: false,
+            message: "An error occurred during login"
         });
     }
+});
 
-
-})
 
 
 
@@ -70,7 +80,7 @@ router.post('/register', async (req, res) => {
     }
     //looping over the data so as to validate it.
     //
-    console.log(data);
+    console.log(data.passwordHash);
     for (const [key, value] of Object.entries(data)) {
         console.log(key);
         if (value.length === 0) {
@@ -109,12 +119,12 @@ router.post('/register', async (req, res) => {
     // if (!user)
     //     return res.status(400).send('the user cannot be created!')
 
-    res.status(200).send({
+   return res.status(200).send({
         success: true,
         message: "User added successfully",
         data: {
             name: user.firstName,
-            businessName: user.businessName
+            businessName: user.businessType
         }
     });
 })
