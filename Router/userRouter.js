@@ -11,11 +11,10 @@ router.post('/login', async (req, res) => {
     const user = await Educator_info.findOne({ email: req.body.email })
     const secret = process.env.secret;
     if (!user) {
-        return res.status(400).send({
-            data:{
+        return res.status(200).send({
                 success: false,
                 message: 'The email is not valid'
-            }
+            
         });
     }
 
@@ -42,12 +41,11 @@ router.post('/login', async (req, res) => {
         })
     } else {
         res.status(200).send({
-            data:{
                 
                     success:false,
                     message:"The password is not valid"
                 
-            }
+            
         });
     }
 
