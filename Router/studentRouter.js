@@ -34,7 +34,7 @@ router.post('/student/add', async (req ,res) => {
         for (const [key, value] of Object.entries(data)) {
            // console.log(key);
             if (value.length === 0) {
-                return res.status(505).send({
+                return res.status(200).send({
                     success: false,
                     message: key + "  is missing"
                 })
@@ -42,7 +42,7 @@ router.post('/student/add', async (req ,res) => {
     
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if (key === "email" && !emailRegex.test(data.email)) {
-                return res.status(505).send({
+                return res.status(200).send({
                     success: false,
                     message: key + "  is not valid"
                 })
@@ -60,7 +60,7 @@ router.post('/student/add', async (req ,res) => {
             }
             // if(key==="mobileNumber"|| key==="mobileNumberParent"){
             //     if(value.length!=10){
-            //         return res.status(505).send({
+            //         return res.status(200).send({
             //             success:false,
             //             message:"Mobile number is not valid"
             //         })
