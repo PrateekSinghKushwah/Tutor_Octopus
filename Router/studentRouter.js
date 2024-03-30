@@ -1,10 +1,10 @@
-const { student, Student } = require('../Models/Student');
+const { Student } = require('../Models/Student');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-router.post('/student/add', async (req, res) => {
+router.post('/student/add', async (req ,res) => {
     // const user = await Educator_info.findOne({ email: req.body.email })
     try{
         let data={
@@ -13,10 +13,10 @@ router.post('/student/add', async (req, res) => {
             email:req.body.email,
             mobileNumber:req.body.mobileNumber,
             smsCapable:req.body.smsCapable,
-            gender:req.body. gender,
+            gender:req.body.gender,
             dob:req.body.dob,
             studentStatus:req.body.studentStatus,
-            studentType:req.body.studentType,
+            //studentType:req.body.studentType,
             familyType:req.body.familyType,
             firstNameParent:req.body.firstNameParent,
             lastNameParent:req.body.lastNameParent,
@@ -30,7 +30,46 @@ router.post('/student/add', async (req, res) => {
             price:req.body. price,
             notes:req.body.notes,
         }
-        console.log(data);
+        //console.log(data);
+        for (const [key, value] of Object.entries(data)) {
+           // console.log(key);
+            if (value.length === 0) {
+                return res.status(505).send({
+                    success: false,
+                    message: key + "  is missing"
+                })
+            }
+    
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (key === "email" && !emailRegex.test(data.email)) {
+                return res.send({
+                    success: false,
+                    message: key + "  is not valid"
+                })
+            }
+            if (key === "email") {
+                let query = await Student.findOne({ email: data.email });
+                if (query) {
+                    return res.send({
+                        success: false,
+                        message: key + " Already exist"
+                    })
+    
+                }
+    
+            }
+            if(key==="mobileNumber"|| key==="mobileNumberParent"){
+                if(value.length!=10){
+                    return res.send({
+                        success:false,
+                        message:"Mobile number is not valid"
+                    })
+                }
+            }
+    
+            //if more data_validation is needed . we can add here
+        }
+        //add more data validation as per required
     
         let student=new Student(data);
         student=await student.save();

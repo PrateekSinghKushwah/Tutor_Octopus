@@ -84,7 +84,7 @@ router.post('/register', async (req, res) => {
     for (const [key, value] of Object.entries(data)) {
         console.log(key);
         if (value.length === 0) {
-            return res.send({
+            return res.status(505).send({
                 success: false,
                 message: key + "  is missing"
             })
