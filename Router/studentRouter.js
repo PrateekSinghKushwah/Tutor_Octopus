@@ -58,14 +58,14 @@ router.post('/student/add', async (req ,res) => {
                 }
     
             }
-            if(key==="mobileNumber"|| key==="mobileNumberParent"){
-                if(value.length!=10){
-                    return res.status(505).send({
-                        success:false,
-                        message:"Mobile number is not valid"
-                    })
-                }
-            }
+            // if(key==="mobileNumber"|| key==="mobileNumberParent"){
+            //     if(value.length!=10){
+            //         return res.status(505).send({
+            //             success:false,
+            //             message:"Mobile number is not valid"
+            //         })
+            //     }
+            // }
     
             //if more data_validation is needed . we can add here
         }
