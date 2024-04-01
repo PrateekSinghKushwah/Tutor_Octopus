@@ -25,7 +25,8 @@ const Educator_info=new mongoose.Schema({
     businessType: {
         type: String,
         required: true,
-    }
+    },
+    
    
 
 });

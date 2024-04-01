@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+const { Educator_info } = require('./Educator_info');
 
 // {firstName: 'PANKAJ', lastName: 'SONI', email: 'pankajsoni93444@gmai', password: '1234', businessName: 'Lets_learn', …}
 const Student=new mongoose.Schema({
@@ -84,6 +85,10 @@ const Student=new mongoose.Schema({
     },
     notes:{
         type:String,
+    },
+    managedBy:{
+        type:mongoose.Schema.type.ObjectId,
+        ref:"Educator_info"
     }
     
 
