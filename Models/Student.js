@@ -87,7 +87,7 @@ const Student=new mongoose.Schema({
         type:String,
     },
     managedBy:{
-        type:mongoose.Schema.type.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:"Educator_info"
     }
     

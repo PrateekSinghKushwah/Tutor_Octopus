@@ -29,6 +29,7 @@ router.post('/student/add', async (req ,res) => {
             billing:req.body.billing,
             price:req.body. price,
             notes:req.body.notes,
+            managedBy:req.body.managedBy
         }
         //console.log(data);
         for (const [key, value] of Object.entries(data)) {
