@@ -86,10 +86,10 @@ const Student=new mongoose.Schema({
     notes:{
         type:String,
     },
-    managedBy:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Educator_info"
-    }
+    // managedBy:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"Educator_info"
+    // }
     
 
    
