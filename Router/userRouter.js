@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
+const {Student}=require('../Models/Student');
 
 
 // {firstName: 'PANKAJ', lastName: 'SONI', email: 'pankajsoni93444@gmai', password: '1234', businessName: 'Lets_learn', …}
@@ -183,6 +184,28 @@ router.post('/teacher/announcement', async (req, res) => {
         });
     }
 });
+
+
+
+//Number of Students under that teacher ......GET API
+router.get('/student/read', async (req, res) => {
+    try {
+        // const managedBy = req.body.managedBy; 
+        // Get the id from request parameters
+        const student = await Student.find();
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+        res.json(student);
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+
 
 
 
