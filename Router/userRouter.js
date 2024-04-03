@@ -190,9 +190,8 @@ router.post('/teacher/announcement', async (req, res) => {
 //Number of Students under that teacher ......GET API
 router.get('/student/read', async (req, res) => {
     try {
-        const managedBy = req.params.managedBy; 
-        // Get the id from request parameters
-        const student = await Student.find({managedBy:managedBy});
+        // const id = req.body.id; // Get the id from request parameters
+         const student = await Student.find();
         if (!student) {
             return res.status(404).json({ message: "Student not found" });
         }
