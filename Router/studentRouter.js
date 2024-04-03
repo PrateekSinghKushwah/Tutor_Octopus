@@ -93,4 +93,40 @@ router.post('/student/add', async (req ,res) => {
    
 
 })
+
+
+router.delete('/student/delete', async (req, res) => {
+    try {
+        const email = req.body.email; // Extract email from request body
+
+        // Find and delete the student based on email
+        const deletedStudent = await Student.findOneAndDelete({ email });
+
+        if (!deletedStudent) {
+            // If student not found
+            return res.status(404).send({
+                success: false,
+                message: "Student not found with the provided email."
+            });
+        }
+
+        // If student deleted successfully
+        res.status(200).send({
+            success: true,
+            message: "Student deleted successfully.",
+            deletedStudent
+        });
+    } catch (err) {
+        // If any error occurs
+        res.status(500).send({
+            success: false,
+            message: "Error occurred while deleting student.",
+            error: err.message
+        });
+    }
+});
+
+
 module.exports=router;
+
+
