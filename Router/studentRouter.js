@@ -37,7 +37,7 @@ router.post('/student/add', async (req ,res) => {
 
            const array=['notes','batch','lessonCategory','lessonLength']
 
-           if(!array.has(key)){
+           if(!array.includes(key)){
             if (value.length === 0) {
                 return res.status(200).send({
                     success: false,
