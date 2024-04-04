@@ -95,12 +95,17 @@ router.post('/student/add', async (req ,res) => {
 })
 
 
-router.delete('/student/delete', async (req, res) => {
+router.post('/student/delete', async (req, res) => {
     try {
-        const email = req.body.email; // Extract email from request body
-
+        // let data = {
+        //     email:req.body.email
+        // };
+        let data=req.body.email
+       // console.log(data); 
+        // Extract email from request body
+       // console.log(data);
         // Find and delete the student based on email
-        const deletedStudent = await Student.findOneAndDelete({ email });
+        const deletedStudent = await Student.findOneAndDelete({ email:data });
 
         if (!deletedStudent) {
             // If student not found
@@ -125,6 +130,9 @@ router.delete('/student/delete', async (req, res) => {
         });
     }
 });
+
+
+
 
 
 module.exports=router;

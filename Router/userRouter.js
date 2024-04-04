@@ -171,10 +171,10 @@ router.post('/teacher/announcement', async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Announcement updated successfully",
-            data: {
-                subject:updatedUser.subject,
-                description:updatedUser.description
-            } // This will contain the updated user object
+            // data: {
+            //     subject:updatedUser.subject,
+            //     description:updatedUser.description
+            // } // This will contain the updated user object
         });
     } catch (error) {
         console.error("Error:", error);
@@ -201,6 +201,52 @@ router.get('/student/read', async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+
+
+
+
+
+
+//Number of Announcement under the teacher .....**GET_API**
+router.get('/announcement/read', async (req, res) => {
+    try {
+        const id = req.body.id; // Assuming the id is passed in the request body
+        if (!id) {
+            return res.status(400).json({ message: "ID is required in the request body" });
+        }
+
+        const data = await Educator_info.findById(id);
+
+        if (!data) {
+            return res.status(404).json({ message: "Data not found" });
+        }
+
+        // Extract subject and description fields from the data
+        const { subject, description } = data;
+
+        res.status(200).send(
+            {
+                success:true,
+                data:{
+                    subject:subject,
+                    description:description
+                }
+            }
+        );
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+
+
+
+
+
 
 
 
