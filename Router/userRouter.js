@@ -211,9 +211,13 @@ router.get('/student/read', async (req, res) => {
 //Number of Announcement under the teacher .....**GET_API**
 router.get('/announcement/read', async (req, res) => {
     try {
-        const id = req.body.id; // Assuming the id is passed in the request body
+        const id = req.query.id; // Retrieve id from query string
+
+        console.log(id);
+        console.log("check-2");
+
         if (!id) {
-            return res.status(400).json({ message: "ID is required in the request body" });
+            return res.status(400).json({ message: "ID is required in the query parameters" });
         }
 
         const data = await Educator_info.findById(id);
@@ -225,20 +229,25 @@ router.get('/announcement/read', async (req, res) => {
         // Extract subject and description fields from the data
         const { subject, description } = data;
 
-        res.status(200).send(
-            {
-                success:true,
-                data:{
-                    subject:subject,
-                    description:description
-                }
+        res.status(200).send({
+            success: true,
+            data: {
+                subject: subject,
+                description: description
             }
-        );
+        });
     } catch (error) {
         console.error("Error:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+
+
+
+
+
+
 
 
 

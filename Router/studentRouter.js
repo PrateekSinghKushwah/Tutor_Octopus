@@ -13,19 +13,18 @@ router.post('/student/add', async (req ,res) => {
             email:req.body.email,
             mobileNumber:req.body.mobileNumber,
             smsCapable:req.body.smsCapable,
-            gender:req.body.gender,
-            dob:req.body.dob,
+            batch:req.body.gender,
             studentStatus:req.body.studentStatus,
             //studentType:req.body.studentType,
-            familyType:req.body.familyType,
+            // familyType:req.body.familyType,
             firstNameParent:req.body.firstNameParent,
             lastNameParent:req.body.lastNameParent,
-            lessonLength:req.body.lessonLength,
             emailParent:req.body.emailParent,
             mobileNumberParent:req.body.mobileNumberParent,
             smsCapableParent:req.body.smsCapableParent,
             preference:req.body.preference,
             lessonCategory:req.body.lessonCategory,
+            lessonLength:req.body.lessonLength,
             billing:req.body.billing,
             price:req.body. price,
             notes:req.body.notes,
@@ -34,12 +33,21 @@ router.post('/student/add', async (req ,res) => {
         //console.log(data);
         for (const [key, value] of Object.entries(data)) {
            // console.log(key);
+
+
+           const array=[notes,batch,lessonCategory,lessonLength]
+
+           if(!array.has(key)){
             if (value.length === 0) {
                 return res.status(200).send({
                     success: false,
                     message: key + "  is missing"
                 })
             }
+
+           }
+           
+           
     
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if (key === "email" && !emailRegex.test(data.email)) {
@@ -130,6 +138,13 @@ router.post('/student/delete', async (req, res) => {
         });
     }
 });
+
+
+
+
+
+//Edit Student 
+
 
 
 

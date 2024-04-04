@@ -23,11 +23,7 @@ const Student=new mongoose.Schema({
         type: String,
         
     },
-    gender: {
-        type: String,
-        
-    },
-    dob: {
+    batch: {
         type: String,
         
     },
@@ -39,10 +35,6 @@ const Student=new mongoose.Schema({
     //     type:String,
     //    
     // },
-    familyType:{
-        type:String,
-       
-    },
     firstNameParent:{
         type:String,
        
