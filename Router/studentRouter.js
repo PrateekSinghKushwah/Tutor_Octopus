@@ -35,7 +35,7 @@ router.post('/student/add', async (req ,res) => {
            // console.log(key);
 
 
-           const array=[notes,batch,lessonCategory,lessonLength]
+           const array=['notes','batch','lessonCategory','lessonLength']
 
            if(!array.has(key)){
             if (value.length === 0) {
