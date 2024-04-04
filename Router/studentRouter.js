@@ -13,7 +13,7 @@ router.post('/student/add', async (req ,res) => {
             email:req.body.email,
             mobileNumber:req.body.mobileNumber,
             smsCapable:req.body.smsCapable,
-            batch:req.body.gender,
+            batch:req.body.batch,
             studentStatus:req.body.studentStatus,
             //studentType:req.body.studentType,
             // familyType:req.body.familyType,
@@ -35,7 +35,7 @@ router.post('/student/add', async (req ,res) => {
            // console.log(key);
 
 
-           const array=['notes','batch','lessonCategory','lessonLength']
+           const array=['notes','batch','lessonCategory','lessonLength','smsCapableParent','smsCapable']
 
            if(!array.includes(key)){
             if (value.length === 0) {
