@@ -199,7 +199,8 @@ router.get('/student/read', async (req, res) => {
             firstName: student.firstName,
             lastName: student.lastName,
             email: student.email,
-            batch: student.batch
+            batch: student.batch,
+            id:student._id 
         }));
         res.send({
             success:true,
@@ -208,6 +209,57 @@ router.get('/student/read', async (req, res) => {
     } catch (error) {
         console.error("Error:", error);
         res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+router.put('/student/edit', async (req, res) => {
+    try {
+        // let data = {
+        //     email:req.body.email
+        // };
+        let data={
+            email:req.body.email,
+            newPrice:req.body.newPrice,
+            newBatch:req.body.newBatch,
+            newLesson:req.body.newLesson,
+            newMobileNumber:req.body.newMobileNumber,
+            id:req.body.id
+        }
+       // console.log(data); 
+        // Extract email from request body
+       // console.log(data);
+        // Find and delete the student based on email
+        const editedStudent = await Student.findOneAndUpdate({ email:data.email ,_id:data.id},
+            { $set: { price:data.newPrice,
+                batch:data.newBatch,
+                newLesson:data.newLesson,
+                mobileNumber:data.newMobileNumber
+            
+            }} 
+        );
+
+        if (!editedStudent) {
+            // If student not found
+            return res.status(404).send({
+                success: false,
+                message: "Student not found with the provided email."
+            });
+        }
+
+        // If student deleted successfully
+        res.status(200).send({
+            success: true,
+            message: "Student edited successfully.",
+        });
+    } catch (err) {
+        // If any error occurs
+        res.status(500).send({
+            success: false,
+            message: "Error occurred while deleting student.",
+            error: err.message
+        });
     }
 });
 
@@ -250,6 +302,12 @@ router.get('/announcement/read', async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+
+
+
+
+
 
 
 

@@ -143,6 +143,60 @@ router.post('/student/delete', async (req, res) => {
 
 
 
+
+
+router.put('/student/edit', async (req, res) => {
+    try {
+        // let data = {
+        //     email:req.body.email
+        // };
+        let data={
+            email:req.body.email,
+            newPrice:req.body.newPrice,
+            newBatch:req.body.newBatch,
+            newLesson:req.body.newLesson,
+            newMobileNumber:req.body.newMobileNumber
+        }
+       // console.log(data); 
+        // Extract email from request body
+       // console.log(data);
+        // Find and delete the student based on email
+        const editedStudent = await Student.findOneAndUpdate({ email:data },
+            { $set: { price:data.newPrice,
+                batch:data.newBatch,
+                newLesson:data.newLesson,
+                mobileNumber:data.newMobileNumber
+            
+            }} 
+        );
+
+        if (!editedStudent) {
+            // If student not found
+            return res.status(404).send({
+                success: false,
+                message: "Student not found with the provided email."
+            });
+        }
+
+        // If student deleted successfully
+        res.status(200).send({
+            success: true,
+            message: "Student edited successfully.",
+        });
+    } catch (err) {
+        // If any error occurs
+        res.status(500).send({
+            success: false,
+            message: "Error occurred while deleting student.",
+            error: err.message
+        });
+    }
+});
+
+
+
+
+
 //Edit Student 
 
 
