@@ -57,7 +57,7 @@ router.post('/student/add', async (req ,res) => {
                 })
             }
             if (key === "email") {
-                let query = await Student.findOne({ email: data.email });
+                let query = await Student.findOne({ email: data.email,managedBy:data.managedBy });
                 if (query) {
                     return res.send({
                         success: false,
