@@ -190,12 +190,21 @@ router.post('/teacher/announcement', async (req, res) => {
 //Number of Students under that teacher ......GET API
 router.get('/student/read', async (req, res) => {
     try {
-        // const id = req.body.id; // Get the id from request parameters
-         const student = await Student.find();
+         const id = req.query.id; // Get the id from request parameters
+         const student = await Student.find({managedBy:id});
         if (!student) {
             return res.status(404).json({ message: "Student not found" });
         }
-        res.json(student);
+         const studentData = student.map(student => ({
+            firstName: student.firstName,
+            lastName: student.lastName,
+            email: student.email,
+            batch: student.batch
+        }));
+        res.send({
+            success:true,
+            data:studentData
+        });
     } catch (error) {
         console.error("Error:", error);
         res.status(500).json({ message: "Internal server error" });
