@@ -152,21 +152,21 @@ router.put('/student/edit', async (req, res) => {
         // };
         let data={
             email:req.body.email,
-            newPrice:req.body.newPrice,
-            newBatch:req.body.newBatch,
-            newLesson:req.body.newLesson,
-            newMobileNumber:req.body.newMobileNumber,
+            price:req.body.price,
+            batch:req.body.batch,
+           lesson:req.body.lesson,
+            mobileNumber:req.body.mobileNumber,
             managedBy:req.body.managedBy
         }
        // console.log(data); 
         // Extract email from request body
        // console.log(data);
         // Find and delete the student based on email
-        const editedStudent = await Student.findOneAndUpdate({ email:data.email,managedBy:data.managedBy },
-            { $set: { price:data.newPrice,
-                batch:data.newBatch,
-                newLesson:data.newLesson,
-                mobileNumber:data.newMobileNumber
+        const editedStudent = await Student.findOneAndUpdate({ email:data.email, managedBy:data.managedBy },
+            { $set: { price:data.price,
+                batch:data.batch,
+                lesson:data.lesson,
+                mobileNumber:data.mobileNumber
             
             }} 
         );
