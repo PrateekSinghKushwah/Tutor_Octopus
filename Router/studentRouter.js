@@ -154,7 +154,7 @@ router.put('/student/edit', async (req, res) => {
             email:req.body.email,
             price:req.body.price,
             batch:req.body.batch,
-           lesson:req.body.lesson,
+           lessonCategory:req.body.lessonCategory,
             mobileNumber:req.body.mobileNumber,
             managedBy:req.body.managedBy
         }
@@ -165,7 +165,7 @@ router.put('/student/edit', async (req, res) => {
         const editedStudent = await Student.findOneAndUpdate({ email:data.email, managedBy:data.managedBy },
             { $set: { price:data.price,
                 batch:data.batch,
-                lesson:data.lesson,
+                lessonCategory:data.lessonCategory,
                 mobileNumber:data.mobileNumber
             
             }} 
