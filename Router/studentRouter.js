@@ -155,13 +155,14 @@ router.put('/student/edit', async (req, res) => {
             newPrice:req.body.newPrice,
             newBatch:req.body.newBatch,
             newLesson:req.body.newLesson,
-            newMobileNumber:req.body.newMobileNumber
+            newMobileNumber:req.body.newMobileNumber,
+            managedBy:req.body.managedBy
         }
        // console.log(data); 
         // Extract email from request body
        // console.log(data);
         // Find and delete the student based on email
-        const editedStudent = await Student.findOneAndUpdate({ email:data },
+        const editedStudent = await Student.findOneAndUpdate({ email:data.email,managedBy:data.managedBy },
             { $set: { price:data.newPrice,
                 batch:data.newBatch,
                 newLesson:data.newLesson,
