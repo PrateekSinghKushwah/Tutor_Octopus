@@ -1,8 +1,7 @@
 const { Student } = require('../Models/Student');
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+
 
 router.post('/student/add', async (req ,res) => {
     // const user = await Educator_info.findOne({ email: req.body.email })

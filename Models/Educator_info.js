@@ -59,4 +59,6 @@ const Educator_info=new mongoose.Schema({
 
 });
 
+
+
 exports.Educator_info = mongoose.model('Educator_info', Educator_info);

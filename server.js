@@ -5,10 +5,14 @@ const mongoose=require('mongoose');
 const cors=require('cors');
 const userRouter=require('./Router/userRouter')
 const studentRouter=require('./Router/studentRouter')
+const calenderRouter=require('./Router/calenderRouter')
+const bodyParser = require('body-parser');
 
 
 
 //using libraries and middlewares
+
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 require('dotenv/config');
@@ -26,6 +30,7 @@ mongoose.connect(Connection_String).then(()=>{
 //Routers
 app.use(userRouter);
 app.use(studentRouter);
+app.use(calenderRouter);
 
 
 //Connecting to server

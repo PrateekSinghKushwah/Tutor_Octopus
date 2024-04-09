@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const {Student}=require('../Models/Student');
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 
 
 // {firstName: 'PANKAJ', lastName: 'SONI', email: 'pankajsoni93444@gmai', password: '1234', businessName: 'Lets_learn', …}
@@ -130,6 +132,56 @@ router.post('/register', async (req, res) => {
         }
     });
 })
+
+
+
+
+
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'pankajsoni93444@gmail.com', // Your Gmail account
+      pass: 'crqd ypbg ybyw vzfs' // Your Gmail password
+    }
+  });
+
+
+  router.post('/user/forgetPassword/sendOTP', (req, res) => {
+    const { email } = req.body;
+    
+    // Generate OTP (you need to implement this part)
+    const otp=1234;
+  
+    // Send email with OTP
+    const mailOptions = {
+      from: 'pankajsoni93444@gmail.com',
+      to: email,
+      subject: 'Your OTP',
+      text: `Your OTP is: ${otp}` // Replace with the actual OTP
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to send OTP' });
+      } 
+      else {
+        console.log('Email sent:', info.response);
+        return res.send({ success: true, message: 'OTP sent successfully' });
+      }
+    });
+  });
+
+
+
+  
+
+
+
+
+
+
+
 
 
 
@@ -302,37 +354,6 @@ router.get('/announcement/read', async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
