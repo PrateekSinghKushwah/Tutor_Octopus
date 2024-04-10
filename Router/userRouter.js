@@ -266,6 +266,48 @@ router.get('/student/read', async (req, res) => {
 
 
 
+
+
+//Number of Students under that teacher in a batch ......GET API
+router.get('/student/read/batch', async (req, res) => {
+    try {
+         const data = {
+            id:req.query.id,
+            batch:req.query.batch
+         }; // Get the id from request parameters
+         const student = await Student.find({managedBy:data.id,batch:data.batch});
+         console.log(student)
+        if (!student) {
+            return res.status(404).send({ success:false,message: "Student not found" });
+        }
+         const studentData = student.map(student => ({
+            firstName: student.firstName,
+            lastName: student.lastName,
+            email: student.email,
+            id:student._id,
+            attendenceStatus:student.attendenceStatus
+        }));
+        res.send({
+            success:true,
+            data:studentData
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+//changing the attendence-status
+ 
+
+
+
+
+
+
+
 // router.put('/student/edit', async (req, res) => {
 //     try {
 //         // let data = {
@@ -326,8 +368,8 @@ router.get('/announcement/read', async (req, res) => {
     try {
         const id = req.query.id; // Retrieve id from query string
 
-        console.log(id);
-        console.log("check-2");
+        // console.log(id);
+        // console.log("check-2");
 
         if (!id) {
             return res.status(400).json({ message: "ID is required in the query parameters" });
