@@ -7,14 +7,14 @@ const Calender=new mongoose.Schema({
         type: String,   
     },
     time:{
-        type:Date
+        type:String
     },
     description:
     {
         type:String,
     },
     date:{
-        type:Date
+        type:String
     },
     managedBy:{
         type:mongoose.Schema.Types.ObjectId,
