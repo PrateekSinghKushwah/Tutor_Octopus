@@ -141,9 +141,6 @@ router.post('/student/delete', async (req, res) => {
 
 
 
-
-
-
 router.put('/student/edit', async (req, res) => {
     try {
         // let data = {
@@ -193,6 +190,149 @@ router.put('/student/edit', async (req, res) => {
         });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+//Number of Students under that teacher ......GET API
+router.get('/student/read', async (req, res) => {
+    try {
+         const id = req.query.id; // Get the id from request parameters
+         const student = await Student.find({managedBy:id});
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+         const studentData = student.map(student => ({
+            firstName: student.firstName,
+            lastName: student.lastName,
+            email: student.email,
+            batch: student.batch,
+            id:student._id 
+        }));
+
+        studentData.sort((a, b) => {
+            return a.firstName.localeCompare(b.firstName);
+        });
+        res.send({
+            success:true,
+            data:studentData
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+
+
+//Number of Students under that teacher in a batch ......GET API
+router.get('/student/read/batch', async (req, res) => {
+    try {
+         const data = {
+            id:req.query.id,
+            batch:req.query.batch
+         }; // Get the id from request parameters
+         const student = await Student.find({managedBy:data.id,batch:data.batch});
+         console.log(student)
+        if (!student) {
+            return res.status(404).send({ success:false,message: "Student not found" });
+        }
+         const studentData = student.map(student => ({
+            firstName: student.firstName,
+            lastName: student.lastName,
+            email: student.email,
+            id:student._id,
+            attendenceStatus:student.attendenceStatus
+        }));
+
+        studentData.sort((a, b) => {
+            return a.firstName.localeCompare(b.firstName);
+        });
+        res.send({
+            success:true,
+            data:studentData
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+
+
+//update the student attendence
+
+router.put('/student/Attendenceupdate', async (req, res) => {
+    try {
+        const { id, status } = req.body;
+
+        // Validate the length of the arrays
+        if (id.length !== status.length) {
+            return res.status(400).send({
+                success: false,
+                message: "Length of ID and status arrays should be the same."
+            });
+        }
+
+        const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+
+        // Iterate over the arrays to update each student's attendance status
+        const updatedStudents = [];
+        for (let i = 0; i < id.length; i++) {
+            const updatedStudent = await Student.findOneAndUpdate(
+                { _id: id[i] },
+                {
+                    $push: {
+                        attendenceStatus: {
+                            date: currentDate,
+                            status: status[i]
+                        }
+                    }
+                },
+                { new: true,
+                    projection: { _id: 0 }
+                
+                
+                },
+                
+                 // Return the updated document
+            );
+            updatedStudents.push(updatedStudent);
+        }
+
+        res.status(200).send({
+            success: true,
+            message: "Attendance updated successfully.",
+            updatedStudents: updatedStudents
+        });
+    } catch (err) {
+        res.status(500).send({
+            success: false,
+            message: "Error occurred while updating attendance.",
+            error: err.message
+        });
+    }
+});
+
+
+
+
+
+
+
+
+
 
 
 

@@ -72,16 +72,20 @@ const Student=new mongoose.Schema({
        
     },
     price:{
-        type:String,
-       
+        type:String,  
     },
     notes:{
         type:String,
     },
-    attendenceStatus:{
-        type:String,
-        default:"present"
-    },
+    attendenceStatus:[{
+        date:{
+            type:String
+        },
+        status:{
+            type:Boolean
+        }
+    }],
+   
     managedBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Educator_info"
