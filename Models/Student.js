@@ -85,6 +85,17 @@ const Student=new mongoose.Schema({
             type:Boolean
         }
     }],
+
+    presentDate: {
+        type: [String],
+        default: ["2024-04-14", "2024-04-13"]
+    },
+
+    allDate: {
+        type: [String],
+        default: ["2024-04-14", "2024-04-13"]
+    },
+    
    
     managedBy:{
         type:mongoose.Schema.Types.ObjectId,
