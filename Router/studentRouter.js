@@ -285,7 +285,24 @@ router.put('/student/Attendenceupdate', async (req, res) => {
             });
         }
 
+        //check if the date is already there. if date is there, then 
+        //a message will be displayed "Attendece for the date is taken"
+
+       let student=Student.findOne({_id:id[0]});
+       let dateBackend=student.attendenceStatus.map(item=>item.date);
+
+       
+
         const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+        const currDate = new Date().toISOString().split('T')[0];
+        if(dateBackend.includes(currentDate))
+        {
+            return res.status(500).send({
+                success:false,
+                message:"Attendece for the day is taken" ,
+                status:405  
+            })
+        }
 
         // Iterate over the arrays to update each student's attendance status
         const updatedStudents = [];
@@ -324,6 +341,69 @@ router.put('/student/Attendenceupdate', async (req, res) => {
         });
     }
 });
+
+
+
+
+router.get('/student/read/AttendenceRecord', async (req, res) => {
+    try {
+         const data = {
+            student_id:req.query.student_id,
+            // batch:req.query.batch,
+            // teacher_id:req.query.teacher_id
+         }; // Get the id from request parameters
+         const student = await Student.findOne({_id:data.student_id});
+        //  managedBy:data.teacher_id,batch:data.batch,
+         //console.log(student)
+        if (!student) {
+            return res.status(404).send({ success:false,message: "Student not found" });
+        }
+        //get the Attendence-data from the list 
+       let reqdata={
+        date:[],
+        status:[],
+        trueCount:0,
+        falseCount:0
+       }
+       for(let i=0;i<student.attendenceStatus.length;i++){
+        reqdata.date.push(student.attendenceStatus[i].date);
+        reqdata.status.push(student.attendenceStatus[i].status);
+       }
+       //let trueCount=0,falseCount=0;
+       for (const value of reqdata.status) {
+        if (value === true) {
+            reqdata.trueCount=reqdata.trueCount+1;
+        } else {
+            reqdata.falseCount=reqdata.falseCount+1;
+        }
+    }
+
+
+
+        // studentData.sort((a, b) => {
+        //     return a.firstName.localeCompare(b.firstName);
+        // });
+        res.send({
+            success:true,
+            data:reqdata,
+            // present:trueCount,
+            // absent:falseCount
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
