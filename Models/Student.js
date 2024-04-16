@@ -55,9 +55,15 @@ const Student=new mongoose.Schema({
         type:String,
        
     },
-    preference:{
-        type:String,
+    // preference:{
+    //     type:String,
        
+    // },
+    emailReminder:{
+        type:String,
+    },
+    smsReminder:{
+        type:String
     },
     lessonCategory:{
         type:String,
@@ -95,6 +101,7 @@ const Student=new mongoose.Schema({
         type: [String],
         default: ["2024-04-14", "2024-04-13"]
     },
+
     
    
     managedBy:{

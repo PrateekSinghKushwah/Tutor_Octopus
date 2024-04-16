@@ -26,12 +26,20 @@ const Educator_info=new mongoose.Schema({
         type: String,
         required: true,
     },
-    subject:{
-        type:[String]
-    },
-    description:{
-        type:[String]
-    },
+
+    announcement:[{
+        
+        batch:{
+            type:String
+        },
+        subject:{
+            type:String
+        },
+        description:{
+            type:String
+        }
+    }],
+    
     quiz:[{
         
             question:{

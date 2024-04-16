@@ -192,7 +192,8 @@ router.post('/teacher/announcement', async (req, res) => {
         const data = {
             subject: req.body.subject,
             description: req.body.description,
-            _id: req.body._id
+            _id: req.body._id,
+            batch:req.body.batch
         };
 
         // Validating data
@@ -204,13 +205,17 @@ router.post('/teacher/announcement', async (req, res) => {
                 });
             }
         }
+        
 
         // Update the announcement in the database
         const updatedUser = await Educator_info.findOneAndUpdate({ _id: data._id },
-             {  $push: {
-                subject: data.subject,
-                description:data.description
-            } }
+             {   $push: {
+                announcement: {
+                    batch: data.batch,
+                    subject:data.subject,
+                    description:data.description 
+                }
+            }, }
              );
 
         if (updatedUser.nModified === 0) {
@@ -374,30 +379,41 @@ router.post('/teacher/announcement', async (req, res) => {
 //Number of Announcement under the teacher .....**GET_API**
 router.get('/announcement/read', async (req, res) => {
     try {
-        const id = req.query.id; // Retrieve id from query string
+        const data={
+            id:req.query.id,
+            // batch:req.query.batch
+
+        } 
+        
+        // Retrieve id from query string
+
 
         // console.log(id);
         // console.log("check-2");
 
-        if (!id) {
+        if (!data.id) {
             return res.status(400).json({ message: "ID is required in the query parameters" });
         }
 
-        const data = await Educator_info.findById(id);
+         const teacher = await Educator_info.findById(data.id);
 
-        if (!data) {
-            return res.status(404).json({ message: "Data not found" });
+        if (!teacher) {
+            return res.status(404).json({ message: " no data is found" });
         }
 
+        const {announcement}=teacher;
+        // const requiredData=announcement.filter(item=>item.batch===data.batch);
+
+
+
+
         // Extract subject and description fields from the data
-        const { subject, description } = data;
+        // const { subject, description } = data;
+
 
         res.status(200).send({
             success: true,
-            data: {
-                subject: subject,
-                description: description
-            }
+            data:announcement
         });
     } catch (error) {
         console.error("Error:", error);
