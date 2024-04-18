@@ -4,7 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
-const {Student}=require('../Models/Student');
+const { Student } = require('../Models/Student');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 role: user.businessType,
-                id:user._id
+                id: user._id
             }
         });
     } catch (error) {
@@ -123,7 +123,7 @@ router.post('/register', async (req, res) => {
     // if (!user)
     //     return res.status(400).send('the user cannot be created!')
 
-   return res.status(200).send({
+    return res.status(200).send({
         success: true,
         message: "User added successfully",
         data: {
@@ -140,41 +140,41 @@ router.post('/register', async (req, res) => {
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'pankajsoni93444@gmail.com', // Your Gmail account
-      pass: 'crqd ypbg ybyw vzfs' // Your Gmail password
+        user: 'pankajsoni93444@gmail.com', // Your Gmail account
+        pass: 'crqd ypbg ybyw vzfs' // Your Gmail password
     }
-  });
+});
 
 
-  router.post('/user/forgetPassword/sendOTP', (req, res) => {
+router.post('/user/forgetPassword/sendOTP', (req, res) => {
     const { email } = req.body;
-    
+
     // Generate OTP (you need to implement this part)
-    const otp=1234;
-  
+    const otp = Math.floor(Math.random() * 9000) + 1000;
+
     // Send email with OTP
     const mailOptions = {
-      from: 'pankajsoni93444@gmail.com',
-      to: email,
-      subject: 'Your OTP',
-      text: `Your OTP is: ${otp}` // Replace with the actual OTP
+        from: 'pankajsoni93444@gmail.com',
+        to: email,
+        subject: 'Your OTP FOR PASSWORD CORRECTION',
+        text: `Your OTP is: ${otp}` // Replace with the actual OTP
     };
-  
+
     transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error('Error:', error);
-        return res.status(500).json({ success: false, message: 'Failed to send OTP' });
-      } 
-      else {
-        console.log('Email sent:', info.response);
-        return res.send({ success: true, message: 'OTP sent successfully' });
-      }
+        if (error) {
+            console.error('Error:', error);
+            return res.status(500).json({ success: false, message: 'Failed to send OTP' });
+        }
+        else {
+            console.log('Email sent:', info.response);
+            return res.send({ success: true, message: 'OTP sent successfully', data: otp });
+        }
     });
-  });
+});
 
 
 
-  
+
 
 
 
@@ -193,7 +193,7 @@ router.post('/teacher/announcement', async (req, res) => {
             subject: req.body.subject,
             description: req.body.description,
             _id: req.body._id,
-            batch:req.body.batch
+            batch: req.body.batch
         };
 
         // Validating data
@@ -205,18 +205,20 @@ router.post('/teacher/announcement', async (req, res) => {
                 });
             }
         }
-        
+
 
         // Update the announcement in the database
         const updatedUser = await Educator_info.findOneAndUpdate({ _id: data._id },
-             {   $push: {
-                announcement: {
-                    batch: data.batch,
-                    subject:data.subject,
-                    description:data.description 
-                }
-            }, }
-             );
+            {
+                $push: {
+                    announcement: {
+                        batch: data.batch,
+                        subject: data.subject,
+                        description: data.description
+                    }
+                },
+            }
+        );
 
         if (updatedUser.nModified === 0) {
             return res.status(404).json({
@@ -313,7 +315,7 @@ router.post('/teacher/announcement', async (req, res) => {
 
 
 //changing the attendence-status
- 
+
 
 
 
@@ -343,7 +345,7 @@ router.post('/teacher/announcement', async (req, res) => {
 //                 batch:data.newBatch,
 //                 newLesson:data.newLesson,
 //                 mobileNumber:data.newMobileNumber
-            
+
 //             }} 
 //         );
 
@@ -379,12 +381,12 @@ router.post('/teacher/announcement', async (req, res) => {
 //Number of Announcement under the teacher .....**GET_API**
 router.get('/announcement/read', async (req, res) => {
     try {
-        const data={
-            id:req.query.id,
+        const data = {
+            id: req.query.id,
             // batch:req.query.batch
 
-        } 
-        
+        }
+
         // Retrieve id from query string
 
 
@@ -395,13 +397,13 @@ router.get('/announcement/read', async (req, res) => {
             return res.status(400).json({ message: "ID is required in the query parameters" });
         }
 
-         const teacher = await Educator_info.findById(data.id);
+        const teacher = await Educator_info.findById(data.id);
 
         if (!teacher) {
             return res.status(404).json({ message: " no data is found" });
         }
 
-        const {announcement}=teacher;
+        const { announcement } = teacher;
         // const requiredData=announcement.filter(item=>item.batch===data.batch);
 
 
@@ -413,11 +415,45 @@ router.get('/announcement/read', async (req, res) => {
 
         res.status(200).send({
             success: true,
-            data:announcement
+            data: announcement
         });
     } catch (error) {
         console.error("Error:", error);
         res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
+router.put('/passwordChange', async (req, res) => {
+    try {
+        const { userId, password } = req.body;
+
+        // Check if userId and password are provided
+        // if (!userId || !password) {
+        //     return res.status(400).json({ success: false, message: 'User ID and password are required' });
+        // }
+
+        // Hash the new password
+        const hashedPassword =  bcrypt.hashSync(password, 10)
+
+        // Update the password in the database
+        const updatedUser = await Educator_info.findOneAndUpdate(
+            { email: userId }, // Query: Find user with the specified email
+            { $set: { passwordHash: hashedPassword } }, // Update: Set the password field to the hashedPassword value
+            { new: true } // Options: Return the updated document
+        );
+        
+
+
+        if (!updatedUser) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        res.status(200).json({ success: true, message: 'Password updated successfully',data:updatedUser });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     }
 });
 
