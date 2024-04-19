@@ -1,7 +1,7 @@
 const { Student } = require('../Models/Student');
 const express = require('express');
 const router = express.Router();
-const verifyToken=require('../Middlewares/');
+const verifyToken=require('../Middlewares/verifyToken');
 
 
 
