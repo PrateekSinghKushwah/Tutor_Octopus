@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const verifyToken = (req, res, next) => {
+const Token=require('../Models/Token');
+const verifyToken = async (req, res, next) => {
     
     const tokenget = req.headers.authorization;
     const id=req.headers.id;
@@ -8,6 +9,12 @@ const verifyToken = (req, res, next) => {
 
     try {
        
+
+        const existingToken = await Token.findOne({ token });
+
+        if (existingToken) {
+            return res.status(401).json({ success: false, message: 'Access denied. Token is invalid' });
+        }
 
         const decoded = jwt.verify(tokenget, process.env.secret);
 

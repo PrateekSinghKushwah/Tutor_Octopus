@@ -60,7 +60,8 @@ const Educator_info=new mongoose.Schema({
             correct:{
                 type:String
             }
-        }]
+        }],
+    
     
     
    

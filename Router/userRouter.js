@@ -79,12 +79,19 @@ router.post('/register', async (req, res) => {
         lastName: req.body.lastName,
         email: req.body.email,
         passwordHash: bcrypt.hashSync(req.body.password, 10),
+        password:req.body.password,
         businessName: req.body.businessName,
         businessType: req.body.businessType
     }
     //looping over the data so as to validate it.
     //
     console.log(data.passwordHash);
+    if(data.password.length<6 || data.password.length>10){
+        return res.status(200).send({
+            success: true,
+            message: "Password length should be between 6 to 10",
+        });
+    }
     for (const [key, value] of Object.entries(data)) {
         console.log(key);
         if (value.length === 0) {
