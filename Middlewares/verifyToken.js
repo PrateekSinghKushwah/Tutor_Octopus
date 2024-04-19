@@ -10,11 +10,11 @@ const verifyToken = async (req, res, next) => {
     try {
        
 
-        const existingToken = await Token.findOne({ token });
+        // const existingToken = await Token.findOne({ token });
 
-        if (existingToken) {
-            return res.status(401).json({ success: false, message: 'Access denied. Token is invalid' });
-        }
+        // if (existingToken) {
+        //     return res.status(401).json({ success: false, message: 'Access denied. Token is invalid' });
+        // }
 
         const decoded = jwt.verify(tokenget, process.env.secret);
 
