@@ -88,7 +88,7 @@ router.post('/register', async (req, res) => {
     console.log(data.passwordHash);
     if(data.password.length<6 || data.password.length>10){
         return res.status(200).send({
-            success: true,
+            success: false,
             message: "Password length should be between 6 to 10",
         });
     }
