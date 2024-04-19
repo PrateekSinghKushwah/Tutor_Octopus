@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
         console.log("Password Hash from DB:", user.passwordHash);
         console.log("Password Comparison:", bcrypt.compareSync(req.body.password, user.passwordHash));
         console.log("Input Password Hash:", bcrypt.hashSync(req.body.password, 10));
-
+        console.log("---------", user);
         // Securely compare passwords
         const passwordMatch = bcrypt.compareSync(req.body.password, user.passwordHash);
 
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
 
         const token = jwt.sign(
             {
-                userId: user.id
+                userId: user._id
             },
             secret,
             { expiresIn: '1h' }

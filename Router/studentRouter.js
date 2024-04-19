@@ -1,9 +1,10 @@
 const { Student } = require('../Models/Student');
 const express = require('express');
 const router = express.Router();
+const verifyToken=require('../Middlewares/verifyToken');
 
 
-router.post('/student/add', async (req ,res) => {
+router.post('/student/add',verifyToken, async (req ,res) => {
     // const user = await Educator_info.findOne({ email: req.body.email })
     try{
         let data={
@@ -31,7 +32,7 @@ router.post('/student/add', async (req ,res) => {
             notes:req.body.notes,
             managedBy:req.body.managedBy
         }
-        //console.log(data);
+        console.log(data);
         for (const [key, value] of Object.entries(data)) {
            // console.log(key);
 
@@ -104,7 +105,7 @@ router.post('/student/add', async (req ,res) => {
 })
 
 
-router.post('/student/delete', async (req, res) => {
+router.post('/student/delete',verifyToken, async (req, res) => {
     try {
         // let data = {
         //     email:req.body.email
@@ -143,7 +144,7 @@ router.post('/student/delete', async (req, res) => {
 
 
 
-router.put('/student/edit', async (req, res) => {
+router.put('/student/edit',verifyToken, async (req, res) => {
     try {
         // let data = {
         //     email:req.body.email
@@ -204,7 +205,7 @@ router.put('/student/edit', async (req, res) => {
 
 
 //Number of Students under that teacher ......GET API
-router.get('/student/read', async (req, res) => {
+router.get('/student/read',verifyToken, async (req, res) => {
     try {
          const id = req.query.id; // Get the id from request parameters
          const student = await Student.find({managedBy:id});
@@ -245,7 +246,7 @@ router.get('/student/read', async (req, res) => {
 
 
 //Number of Students under that teacher in a batch ......GET API
-router.get('/student/read/batch', async (req, res) => {
+router.get('/student/read/batch',verifyToken, async (req, res) => {
     try {
          const data = {
             id:req.query.id,
@@ -281,7 +282,7 @@ router.get('/student/read/batch', async (req, res) => {
 
 
 
-router.get('/student/read/batch/date', async (req, res) => {
+router.get('/student/read/batch/date',verifyToken, async (req, res) => {
     try {
         const data = {
             id: req.query.id,
@@ -318,7 +319,7 @@ router.get('/student/read/batch/date', async (req, res) => {
 
 //update the student attendence
 
-router.put('/student/Attendenceupdate', async (req, res) => {
+router.put('/student/Attendenceupdate',verifyToken, async (req, res) => {
     try {
         const { id, status,date } = req.body;
 
