@@ -154,7 +154,7 @@ const transporter = nodemailer.createTransport({
 
 
 router.post('/user/forgetPassword/sendOTP', (req, res) => {
-    const { email } = req.body;
+    const { email,subject } = req.body;
 
     // Generate OTP (you need to implement this part)
     const otp = Math.floor(Math.random() * 9000) + 1000;
@@ -163,7 +163,7 @@ router.post('/user/forgetPassword/sendOTP', (req, res) => {
     const mailOptions = {
         from: 'pankajsoni93444@gmail.com',
         to: email,
-        subject: 'Your OTP FOR PASSWORD CORRECTION',
+        subject: subject,
         text: `Your OTP is: ${otp}` // Replace with the actual OTP
     };
 
@@ -174,7 +174,7 @@ router.post('/user/forgetPassword/sendOTP', (req, res) => {
         }
         else {
             console.log('Email sent:', info.response);
-            return res.send({ success: true, message: 'OTP sent successfully', data: otp });
+            return res.send({ success: true, message: 'OTP sent successfully' });
         }
     });
 });
