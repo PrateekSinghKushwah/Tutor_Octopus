@@ -61,10 +61,10 @@ const Educator_info=new mongoose.Schema({
                 type:String
             }
         }],
-    
-    
-    
-   
+    batch:{
+        type:[String],
+        required:true
+    }  
 
 });
 

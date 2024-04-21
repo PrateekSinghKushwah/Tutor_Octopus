@@ -28,7 +28,7 @@ exports.studentAdd=async (req ,res) => {
             notes:req.body.notes,
             managedBy:req.body.managedBy
         }
-        console.log(data);
+        //console.log(data);
         for (const [key, value] of Object.entries(data)) {
            // console.log(key);
 
@@ -81,7 +81,7 @@ exports.studentAdd=async (req ,res) => {
         let student=new Student(data);
         student=await student.save();
     
-        res.status(200).send({
+        return res.status(200).send({
             success:true,
             message:"Added student successfully",
             data:{

@@ -61,7 +61,8 @@ exports.loginController = async (req, res) => {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 role: user.businessType,
-                id: user._id
+                id: user._id,
+                batch:user.batch
             }
         });
     } catch (error) {
