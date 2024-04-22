@@ -1,4 +1,5 @@
 const nodemailer=require('nodemailer');
+const {Educator_info}=require('../Models/Educator_info')
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -10,11 +11,13 @@ const transporter = nodemailer.createTransport({
 
 
 
-exports.OtpController=(req, res) => {
+exports.OtpController=async (req, res) => {
     const { email,subject } = req.body;
 
     // Generate OTP (you need to implement this part)
     const otp = Math.floor(Math.random() * 9000) + 1000;
+    const user=Educator_info.findOneAndUpdate({email:email})
+
 
     // Send email with OTP
     const mailOptions = {
@@ -31,7 +34,7 @@ exports.OtpController=(req, res) => {
         }
         else {
             console.log('Email sent:', info.response);
-            return res.send({ success: true, message: 'OTP sent successfully' });
+            return res.send({ success: true, message: 'OTP sent successfully',data:otp });
         }
     });
 }

@@ -101,10 +101,9 @@ const Student=new mongoose.Schema({
         type: [String],
         default: ["2024-04-14", "2024-04-13"]
     },
-    
-
-    
-   
+    otp:{
+        type:Number,
+    },
     managedBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Educator_info"
